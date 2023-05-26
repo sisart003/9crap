@@ -16,7 +16,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Pangolin&display=swap" rel="stylesheet">
     <style>
       .img-target{
-          width: 40vh;
+          width: 60vh;
           cursor: pointer;
       }
 
@@ -36,6 +36,14 @@
           height: 40px;
           border-radius: 50%;
       }
+
+      .crappy_post{
+        text-decoration: none;
+      }
+
+      .crappy_post:hover{
+        text-decoration: underline;
+      }
     </style>
 </head>
 <body style="padding-top: 8rem;">
@@ -45,7 +53,7 @@
         <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample">
             <i class="fa-solid fa-bars text-white"></i>
           </button>
-        <a class="navbar-brand title-post" href="#">9CRAP</a>
+        <a class="navbar-brand title-post" href="<?= base_url(); ?>">9CRAP</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
         </button>
@@ -70,9 +78,10 @@
               <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><img src="https://i.pinimg.com/564x/63/04/ec/6304ece3cd2a693f7daf9cbc257652fa.jpg" class="acc-on-nav" alt=""></a>
               <div class="dropdown-menu">
                 <a class="dropdown-item" href="#">Profile</a>
-                <a class="dropdown-item" href="#">Write a Post</a>
+                <a class="dropdown-item" href="<?= base_url(); ?>posts/create">Write a Post</a>
                 <a class="dropdown-item" href="#">Notifications</a>
                 <a class="dropdown-item" href="#">Settings</a>
+                <a class="dropdown-item" href="#">Logout</a>
               </div>
             </li>
           </ul>
@@ -81,6 +90,8 @@
         <a href="#" class="btn btn-outline-info text-white">Signup</a>
     </div>
     </nav>
+
+    
     
 
     
@@ -96,11 +107,17 @@
     <br><br>
     <h4>Categories</h4>
     <div class="list-group">
-        <a href="#" class="list-group-item list-group-item-action">Cras justo odio</a>
-        <a href="#" class="list-group-item list-group-item-action">Dapibus ac facilisis in</a>
-        <a href="#" class="list-group-item list-group-item-action">Morbi leo risus</a>
+      <?php foreach($categories as $category): ?>
+        <a href="#" class="list-group-item list-group-item-action"><?= $category['cat_title']; ?></a>
+      <?php endforeach; ?>
       </div>
   </div>
 </div>
 
 <div class="container">
+<?php if($this->session->flashdata('post_created')): ?>
+            <div class="alert alert-dismissible alert-success">
+              <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+              <strong>Aww Yeah!</strong> <?php echo $this->session->flashdata('post_created'); ?>
+            </div>
+        <?php endif; ?>

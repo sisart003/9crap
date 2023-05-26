@@ -1,11 +1,13 @@
 <div class="row">
         <div class="col-md-8 ms-4">
+            <?php foreach ($posts as $post): ?>
             <div class="card mb-3">
                 <div class="card-body">
-                <h3 class="card-title">Post Title</h3>
-                <p>Post author <span class="badge bg-info">Posted: 03 03 23</span></p>
+                <h3 class="card-title"><a href="<?php echo site_url($post['post_slug']); ?>" class="crappy_post"><?= $post['post_title'] ?></a></h3>
+                
+                <p>by: Post author <span class="badge bg-info">Posted: <?= date("F j, Y, g:i a", strtotime($post['post_created'])); ?></span></p>
                 </div>
-                <img src="https://i.pinimg.com/564x/20/ab/a7/20aba71632653b50c99aee9ae62e82dc.jpg" class="img-fluid img-target rounded mx-auto d-block" alt="...">
+                <img src="<?= base_url('/assets/crappy/'.$post['post_img']); ?>" class="img-fluid img-target rounded mx-auto d-block" alt="crappy image">
                 
                 <div class="card-body">
                     <span class="badge rounded-pill bg-primary">Tag</span>
@@ -17,9 +19,10 @@
                     <a href="#" class="btn btn-link">Comments(0)</a>
                 </div>
             </div>
+            <?php endforeach; ?>
         </div>
 
-        <div class="col-md-3">
+        <!-- <div class="col-md-3">
             <ul class="list-group">
                 <li class="list-group-item d-flex justify-content-between align-items-center bg-primary text-white">
                     9Crap Rules
@@ -55,5 +58,5 @@
                     10. Rule 10
                 </li>
             </ul>
-        </div>
+        </div> -->
     </div>
