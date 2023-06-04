@@ -81,13 +81,13 @@
                 <a class="dropdown-item" href="<?= base_url(); ?>posts/create">Write a Post</a>
                 <a class="dropdown-item" href="#">Notifications</a>
                 <a class="dropdown-item" href="#">Settings</a>
-                <a class="dropdown-item" href="#">Logout</a>
+                <a class="dropdown-item" href="<?= base_url(); ?>users/logout">Logout</a>
               </div>
             </li>
           </ul>
-          <a href="#" class="btn btn-info">Login</a>
+          <a href="<?= base_url(); ?>login" class="btn btn-info">Login</a>
         &nbsp;&nbsp;
-        <a href="#" class="btn btn-outline-info text-white">Signup</a>
+        <a href="<?= base_url(); ?>signup" class="btn btn-outline-info text-white">Signup</a>
     </div>
     </nav>
 
@@ -108,7 +108,7 @@
     <h4>Categories</h4>
     <div class="list-group">
       <?php foreach($categories as $category): ?>
-        <a href="#" class="list-group-item list-group-item-action"><?= $category['cat_title']; ?></a>
+        <a href="<?php echo site_url('/categories/posts/'.$category['cat_id']); ?>" class="list-group-item list-group-item-action"><?= $category['cat_title']; ?></a>
       <?php endforeach; ?>
       </div>
   </div>
@@ -119,5 +119,26 @@
             <div class="alert alert-dismissible alert-success">
               <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
               <strong>Aww Yeah!</strong> <?php echo $this->session->flashdata('post_created'); ?>
+            </div>
+        <?php endif; ?>
+
+        <?php if($this->session->flashdata('user_logged')): ?>
+            <div class="alert alert-dismissible alert-success">
+              <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+              <strong>Aww Yeah!</strong> <?php echo $this->session->flashdata('user_logged'); ?>
+            </div>
+        <?php endif; ?>
+
+        <?php if($this->session->flashdata('login_failed')): ?>
+            <div class="alert alert-dismissible alert-danger">
+              <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+              <strong>Sheeesh</strong> <?php echo $this->session->flashdata('login_failed'); ?>
+            </div>
+        <?php endif; ?>
+
+        <?php if($this->session->flashdata('user_logout')): ?>
+            <div class="alert alert-dismissible alert-success">
+              <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+              <strong>Sheeesh</strong> <?php echo $this->session->flashdata('user_logout'); ?>
             </div>
         <?php endif; ?>

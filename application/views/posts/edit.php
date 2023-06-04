@@ -11,7 +11,12 @@
                 <img src="<?= base_url('/assets/crappy/'.$post['post_img']); ?>" class="img-fluid img-target rounded mx-auto d-block" alt="<?= $post['post_title']; ?>">
                 
                 <div class="card-body">
-                    <span class="badge rounded-pill bg-primary">Tag</span>
+                <label for="post_category" class="form-label mt-4">Select Category</label>
+                <select class="form-select" id="post_category" name="catp_id">
+                        <?php foreach($categories as $category): ?>
+                        <option value="<?= $category['cat_id']; ?>"><?= $category['cat_title']; ?></option>
+                        <?php endforeach; ?>
+                </select>
                 </div>
 
                 <div class="card-body">

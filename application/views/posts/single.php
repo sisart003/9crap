@@ -20,7 +20,7 @@
                 <img src="<?= base_url('/assets/crappy/'.$post['post_img']); ?>" class="img-fluid img-target rounded mx-auto d-block" alt="<?= $post['post_title']; ?>">
                 
                 <div class="card-body">
-                    <span class="badge rounded-pill bg-primary">Tag</span>
+                    <span class="badge rounded-pill bg-primary"><?php echo "Tags still not working"; //$categories['cat_title']; ?></span>
                 </div>
                 
                 <div class="card-body">

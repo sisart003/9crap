@@ -10,8 +10,9 @@ class Post_model extends CI_Model {
         {       
 
                 if ($slug === FALSE)
-                {
-                        $this->db->order_by('post_id', 'DESC');
+                {       
+                        $this->db->order_by('crap_post.post_id', 'DESC');
+                        $this->db->join('crap_category', 'crap_category.cat_id = crap_post.catp_id');
                         $query = $this->db->get('crap_post');
                         return $query->result_array();
                 }
@@ -28,6 +29,7 @@ class Post_model extends CI_Model {
 
             $data = array(
                 'post_title' => $this->input->post('title'),
+                'catp_id' => $this->input->post('catp_id'),
                 'post_slug' => $slug,
                 'post_img' => $post_image
             );
@@ -41,6 +43,7 @@ class Post_model extends CI_Model {
 
                 $data = array(
                         'post_title' => $this->input->post('title'),
+                        'catp_id' => $this->input->post('catp_id'),
                         'post_slug' => $slug
                 );
 
@@ -54,6 +57,21 @@ class Post_model extends CI_Model {
                 $this->db->delete('crap_post');
 
                 return true;
+        }
+
+        public function get_categories()
+        {
+                $query = $this->db->get('crap_category');
+                return $query->result_array();
+        }
+
+        public function get_posts_by_category($category_id)
+        {
+                $this->db->order_by('crap_post.post_id', 'DESC');
+                $this->db->join('crap_category', 'crap_category.cat_id = crap_post.catp_id');
+                $query = $this->db->get_where('crap_post', array('catp_id' => $category_id));
+
+                return $query->result_array();
         }
 
 

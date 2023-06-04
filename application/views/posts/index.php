@@ -7,10 +7,13 @@
                 
                 <p>by: Post author <span class="badge bg-info">Posted: <?= date("F j, Y, g:i a", strtotime($post['post_created'])); ?></span></p>
                 </div>
-                <img src="<?= base_url('/assets/crappy/'.$post['post_img']); ?>" class="img-fluid img-target rounded mx-auto d-block" alt="crappy image">
+                <a href="<?php echo site_url($post['post_slug']); ?>">
+                    <img src="<?= base_url('/assets/crappy/'.$post['post_img']); ?>" class="img-fluid img-target rounded mx-auto d-block" alt="crappy image">
+                </a>
+                
                 
                 <div class="card-body">
-                    <span class="badge rounded-pill bg-primary">Tag</span>
+                    <span class="badge rounded-pill bg-primary"><?= $post['cat_title']; ?></span>
                 </div>
                 
                 <div class="card-body">
@@ -21,42 +24,4 @@
             </div>
             <?php endforeach; ?>
         </div>
-
-        <!-- <div class="col-md-3">
-            <ul class="list-group">
-                <li class="list-group-item d-flex justify-content-between align-items-center bg-primary text-white">
-                    9Crap Rules
-                </li>
-                <li class="list-group-item d-flex justify-content-between align-items-center">
-                    1. Rule 1
-                </li>
-                <li class="list-group-item d-flex justify-content-between align-items-center">
-                    2. Rule 2
-                </li>
-                <li class="list-group-item d-flex justify-content-between align-items-center">
-                    3. Rule 3
-                </li>
-                <li class="list-group-item d-flex justify-content-between align-items-center">
-                    4. Rule 4
-                </li>
-                <li class="list-group-item d-flex justify-content-between align-items-center">
-                    5. Rule 5
-                </li>
-                <li class="list-group-item d-flex justify-content-between align-items-center">
-                    6. Rule 6
-                </li>
-                <li class="list-group-item d-flex justify-content-between align-items-center">
-                    7. Rule 7
-                </li>
-                <li class="list-group-item d-flex justify-content-between align-items-center">
-                    8. Rule 8
-                </li>
-                <li class="list-group-item d-flex justify-content-between align-items-center">
-                    9. Rule 9
-                </li>
-                <li class="list-group-item d-flex justify-content-between align-items-center">
-                    10. Rule 10
-                </li>
-            </ul>
-        </div> -->
     </div>

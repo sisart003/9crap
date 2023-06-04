@@ -26,14 +26,14 @@ class Posts extends CI_Controller {
                 $this->load->helper(array('form', 'url'));
                 $this->load->library(array('form_validation', 'upload'));
 
-                // $data['categories'] = $this->post_model->get_categories();
+                $data['categories'] = $this->post_model->get_categories();
 
                 $this->form_validation->set_rules('title', 'Title', 'required');
 
                 if ($this->form_validation->run() === FALSE)
                 {
                         $this->load->view('templates/header');
-                        $this->load->view('posts/create');
+                        $this->load->view('posts/create', $data);
                         $this->load->view('templates/footer');
 
                 }
@@ -75,6 +75,9 @@ class Posts extends CI_Controller {
     public function view($slug = NULL)
         {       
                 $data['post'] = $this->post_model->get_posts($slug);
+                // $id = $data['post']['catp_id'];
+                // $data['categories'] = $this->category_model->get_category($id)->cat_title;
+                // $data['categories'] = $this->post_model->get_posts_by_category($category_id);
                 // $post_id = $data['post_item']['id'];
                 // $data['comments'] = $this->comment_model->get_comments($post_id);
 
@@ -93,6 +96,7 @@ class Posts extends CI_Controller {
 
         public function edit($slug){
                 $data['post'] = $this->post_model->get_posts($slug);
+                $data['categories'] = $this->post_model->get_categories();
 
                 if (empty($data['post']))
                 {
